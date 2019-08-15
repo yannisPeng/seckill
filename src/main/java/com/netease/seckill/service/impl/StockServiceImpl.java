@@ -67,4 +67,9 @@ public class StockServiceImpl implements StockService {
         }
         return 1;
     }
+
+    @Override
+    public boolean rollBackStock(long skuId) {
+        return false;
+    }
 }

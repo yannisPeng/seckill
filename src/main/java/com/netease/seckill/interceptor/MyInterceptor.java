@@ -28,7 +28,7 @@ public class MyInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request,
         HttpServletResponse response, Object handler) throws ParseException {
-        //从管理台获取活动开启时间
+        //从管理台获取活动开启时间 TODO
         String time = "2019-8-15 9:5:0";
         long curT = System.currentTimeMillis();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

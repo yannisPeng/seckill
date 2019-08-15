@@ -15,4 +15,6 @@ public interface StockService {
 
     int getTotalStock(long skuId) throws InterruptedException;
 
+    boolean rollBackStock(long skuId);
+
 }

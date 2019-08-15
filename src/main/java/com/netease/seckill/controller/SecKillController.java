@@ -6,7 +6,6 @@
  */
 package com.netease.seckill.controller;
 
-import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +25,9 @@ public class SecKillController {
     @Autowired
     private StockService stockService;
 
+    /**
+     * 库存扣减
+     */
     @RequestMapping("/buyGoods")
     public String buyGoods(
         @RequestParam(required = true, value = "userId") long userId,
@@ -51,6 +53,15 @@ public class SecKillController {
             //TODO 扣减成功，塞入队列，订阅并下单
 
         }
+
+        return "success";
+    }
+
+    /**
+     * 库存回滚，改造订阅订单系统失败订单的topic
+     */
+    @RequestMapping("/rollBackStock")
+    public String rollBackStock(@RequestParam(value = "skuId",required = true) long skuId){
 
         return "success";
     }
