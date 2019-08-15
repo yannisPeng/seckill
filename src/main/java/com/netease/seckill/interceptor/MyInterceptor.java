@@ -6,26 +6,37 @@
  */
 package com.netease.seckill.interceptor;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-
 /**
- * @author 彭羽(pengyu@corp.netease.com)
+ * 拦截不到期请求
+ *
+ * @author 彭羽(pengyu @ corp.netease.com)
  */
-@Configuration
+@Component
 public class MyInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request,
-                             HttpServletResponse response, Object handler) throws Exception {
-        if(true){
-            return false;
+        HttpServletResponse response, Object handler) throws ParseException {
+        //从管理台获取活动开启时间
+        String time = "2019-8-15 9:5:0";
+        long curT = System.currentTimeMillis();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        long startTime = sdf.parse(time).getTime();
+        //时间正确
+        if (curT > startTime) {
+            return true;
         }
         return false;
     }
-
 }
