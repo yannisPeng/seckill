@@ -35,7 +35,7 @@ public class RollBackStockService {
             Long skuId = Long.valueOf(msg);
             RLock rLock = redissonService.getRLock(skuId + "-" + "lock");
 
-            boolean bs = rLock.tryLock(30, 6, TimeUnit.SECONDS);
+            boolean bs = rLock.tryLock(1000, 6, TimeUnit.SECONDS);
 
             if (bs) {
                 //从redis获取当前商品内存

@@ -33,7 +33,7 @@ public class StockServiceImpl implements StockService {
 
         RLock rLock = redissonService.getRLock(skuId + "-" + "lock");
 
-        boolean bs = rLock.tryLock(30, 6, TimeUnit.SECONDS);
+        boolean bs = rLock.tryLock(1000, 6, TimeUnit.SECONDS);
 
         if (bs) {
             //从redis获取当前商品内存
@@ -54,7 +54,7 @@ public class StockServiceImpl implements StockService {
     public int getTotalStock(long skuId) throws InterruptedException {
         RLock rLock = redissonService.getRLock(skuId + "-" + "lock");
 
-        boolean bs = rLock.tryLock(30, 6, TimeUnit.SECONDS);
+        boolean bs = rLock.tryLock(1000, 6, TimeUnit.SECONDS);
 
         Integer instock = 0;
 

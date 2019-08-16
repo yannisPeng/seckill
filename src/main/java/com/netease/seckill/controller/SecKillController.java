@@ -51,7 +51,6 @@ public class SecKillController {
         if (dflag == true) {
             //增加总库存
             //TODO 扣减成功，塞入队列，订阅并下单
-
         }
 
         return "success";
