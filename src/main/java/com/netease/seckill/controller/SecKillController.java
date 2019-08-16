@@ -57,13 +57,4 @@ public class SecKillController {
         return "success";
     }
 
-    /**
-     * 库存回滚，改造订阅订单系统失败订单的topic
-     */
-    @RequestMapping("/rollBackStock")
-    public String rollBackStock(@RequestParam(value = "skuId",required = true) long skuId){
-
-        return "success";
-    }
-
 }

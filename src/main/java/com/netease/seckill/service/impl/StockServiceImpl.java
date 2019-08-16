@@ -45,8 +45,8 @@ public class StockServiceImpl implements StockService {
                 //释放锁
                 rLock.unlock();
                 return true;
-    }
-}
+            }
+        }
         return false;
     }
 
@@ -68,8 +68,4 @@ public class StockServiceImpl implements StockService {
         return 1;
     }
 
-    @Override
-    public boolean rollBackStock(long skuId) {
-        return false;
-    }
 }
