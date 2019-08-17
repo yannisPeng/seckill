@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import com.alibaba.fastjson.JSON;
 
 /**
- * @author 彭羽(wb.pengyu @ mesg.corp.netease.com)
+ * @author 彭羽(pengyu @ .corp.netease.com)
  */
 @Service
 public class RedisService {

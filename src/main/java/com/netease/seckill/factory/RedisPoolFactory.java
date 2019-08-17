@@ -16,7 +16,7 @@ import redis.clients.jedis.JedisPoolConfig;
 import com.netease.seckill.config.RedisConfig;
 
 /**
- * @author 彭羽(wb.pengyu @ mesg.corp.netease.com)
+ * @author 彭羽(pengyu @.corp.netease.com)
  */
 @Service
 public class RedisPoolFactory {

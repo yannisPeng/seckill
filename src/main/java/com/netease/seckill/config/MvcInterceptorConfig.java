@@ -14,7 +14,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 import com.netease.seckill.interceptor.MyInterceptor;
 
 /**
- * @author 彭羽(wb.pengyu @ mesg.corp.netease.com)
+ * @author 彭羽(pengyu @ .corp.netease.com)
  */
 @Configuration
 public class MvcInterceptorConfig extends WebMvcConfigurationSupport {

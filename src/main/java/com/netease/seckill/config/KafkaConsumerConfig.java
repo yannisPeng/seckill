@@ -22,7 +22,7 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
 
 /**
- * @author 彭羽(wb.pengyu @ mesg.corp.netease.com)
+ * @author 彭羽(pengyu @ .corp.netease.com)
  */
 @Configuration
 @EnableKafka

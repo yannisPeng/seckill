@@ -17,7 +17,7 @@ import com.netease.seckill.cache.RedisService;
 import com.netease.seckill.service.RedissonService;
 
 /**
- * @author 彭羽(wb.pengyu @ mesg.corp.netease.com)
+ * @author 彭羽(pengyu @ .corp.netease.com)
  */
 @Service
 public class RollBackStockService {

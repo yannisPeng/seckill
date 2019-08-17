@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import com.netease.seckill.service.RedissonService;
 
 /**
- * @author 彭羽(wb.pengyu @ mesg.corp.netease.com)
+ * @author 彭羽(pengyu @ .corp.netease.com)
  */
 @Service
 public class RedissonServiceImpl implements RedissonService {

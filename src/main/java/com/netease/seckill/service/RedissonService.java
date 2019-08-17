@@ -9,7 +9,7 @@ package com.netease.seckill.service;
 import org.redisson.api.RLock;
 
 /**
- * @author 彭羽(wb.pengyu @ mesg.corp.netease.com)
+ * @author 彭羽(pengyu @ .corp.netease.com)
  */
 public interface RedissonService {
 

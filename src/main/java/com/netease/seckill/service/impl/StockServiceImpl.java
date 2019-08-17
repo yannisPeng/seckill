@@ -17,7 +17,7 @@ import com.netease.seckill.service.RedissonService;
 import com.netease.seckill.service.StockService;
 
 /**
- * @author 彭羽(wb.pengyu @ mesg.corp.netease.com)
+ * @author 彭羽(pengyu @corp.netease.com)
  */
 @Service
 public class StockServiceImpl implements StockService {

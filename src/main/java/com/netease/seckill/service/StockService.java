@@ -7,7 +7,7 @@
 package com.netease.seckill.service;
 
 /**
- * @author 彭羽(wb.pengyu @ mesg.corp.netease.com)
+ * @author 彭羽(pengyu @ .corp.netease.com)
  */
 public interface StockService {
 
