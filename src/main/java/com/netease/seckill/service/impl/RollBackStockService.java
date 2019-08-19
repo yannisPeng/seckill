@@ -14,6 +14,8 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 import com.netease.seckill.cache.RedisService;
+import com.netease.seckill.dao.IdempotentMapper;
+import com.netease.seckill.po.Idempotent;
 import com.netease.seckill.service.RedissonService;
 
 /**
@@ -28,11 +30,26 @@ public class RollBackStockService {
     @Autowired
     private RedissonService redissonService;
 
-    @KafkaListener(topics = { "order-cancel" })
+    @Autowired
+    private IdempotentMapper idempotentMapper;
+
+    @KafkaListener(topics = {"order-cancel"})
     public void getMessage(String msg) {
         try {
             //回滚库存
-            Long skuId = Long.valueOf(msg);
+            String[] strs = msg.split("-");
+            //消费之前做幂等，防止多机消费
+            Idempotent idempotent = idempotentMapper.selectByRecord(strs[1]);
+            if (idempotent == null) {
+                idempotent = new Idempotent();
+                idempotent.setRecord(strs[1]);
+                idempotent.setTag("consum");
+                idempotent.setOptTime(System.currentTimeMillis());
+                idempotentMapper.insert(idempotent);
+            } else {
+                return;
+            }
+            Long skuId = Long.valueOf(strs[0]);
             RLock rLock = redissonService.getRLock(skuId + "-" + "lock");
 
             boolean bs = rLock.tryLock(1000, 6, TimeUnit.SECONDS);
@@ -40,15 +57,16 @@ public class RollBackStockService {
             if (bs) {
                 //从redis获取当前商品内存
                 Integer instock = redisService.get(skuId + "-" + "inStock",
-                    Integer.class);
+                        Integer.class);
                 if (instock != null && instock > 0) {
                     boolean flag = redisService.set(skuId + "-" + "inStock",
-                        instock + 1);
+                            instock + 1);
                     //释放锁
                     rLock.unlock();
                 }
             }
         } catch (Exception e) {
+            //这里需要告警
             e.printStackTrace();
         }
     }
