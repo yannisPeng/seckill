@@ -6,18 +6,21 @@
  */
 package com.netease.seckill.dao;
 
-import org.springframework.stereotype.Repository;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.netease.seckill.po.Idempotent;
 
 /**
  * @author 彭羽(pengyu@corp.netease.com)
  */
-@Repository
+@Mapper
 public interface IdempotentMapper {
 
     int insert(Idempotent idempotent);
 
     Idempotent selectByRecord(String record);
+
+    int updateOptTime(long optTime, long id);
 
 }

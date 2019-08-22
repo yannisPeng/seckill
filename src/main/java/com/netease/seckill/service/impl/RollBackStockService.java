@@ -39,10 +39,10 @@ public class RollBackStockService {
             //回滚库存
             String[] strs = msg.split("-");
             //消费之前做幂等，防止多机消费
-            Idempotent idempotent = idempotentMapper.selectByRecord(strs[1]);
+            Idempotent idempotent = idempotentMapper.selectByRecord(msg);
             if (idempotent == null) {
                 idempotent = new Idempotent();
-                idempotent.setRecord(strs[1]);
+                idempotent.setRecord(msg);
                 idempotent.setTag("consum");
                 idempotent.setOptTime(System.currentTimeMillis());
                 idempotentMapper.insert(idempotent);

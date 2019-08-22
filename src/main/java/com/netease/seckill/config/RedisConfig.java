@@ -20,28 +20,28 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RedisConfig {
 
-    @Value("${spring.redis.host}")
+    @Value("${netease.redis.host}")
     private String host;
 
-    @Value("${spring.redis.port}")
+    @Value("${netease.redis.port}")
     private int port;
 
-    @Value("${spring.redis.password}")
+    @Value("${netease.redis.password}")
     private String password;
 
-    @Value("${spring.redis.jedis.pool.max-active}")
+    @Value("${netease.redis.poolMaxTotal}")
     private int poolMaxTotal;
 
-    @Value("${spring.redis.jedis.pool.min-idle}")
+    @Value("${netease.redis.minIdle}")
     private int minIdle;
 
-    @Value("${spring.redis.jedis.pool.max-wait}")
+    @Value("${netease.redis.poolMaxWait}")
     private long poolMaxWait;
 
-    @Value("${spring.redis.jedis.pool.max-idle}")
+    @Value("${netease.redis.poolMaxIdle}")
     private int poolMaxIdle;
 
-    @Value("${spring.redis.timeout}")
+    @Value("${netease.redis.timeout}")
     private int timeout;
 
 }
