@@ -11,8 +11,10 @@ package com.netease.seckill.service;
  */
 public interface StockService {
 
-    boolean deductionStock(long skuId) throws InterruptedException;
+    boolean deductionStock(long skuId,long userId) throws InterruptedException;
 
     int getTotalStock(long skuId) throws InterruptedException;
+
+    void getTotalStock();
 
 }

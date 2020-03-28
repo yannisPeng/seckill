@@ -22,7 +22,7 @@ import com.netease.seckill.service.IdempotentService;
 @Service
 public class IdempotentServiceImpl implements IdempotentService {
 
-    @Autowired
+    @Autowired(required = false)
     private IdempotentMapper idempotentMapper;
 
     @Autowired
@@ -35,7 +35,8 @@ public class IdempotentServiceImpl implements IdempotentService {
 
     @Override
     public Idempotent selectByRecord(String record) {
-        return idempotentMapper.selectByRecord(record);
+//        return idempotentMapper.selectByRecord(record);
+        return new Idempotent();
     }
 
     @Override

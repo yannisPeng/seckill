@@ -7,7 +7,6 @@ import org.springframework.cache.annotation.EnableCaching;
 
 @EnableCaching
 @SpringBootApplication
-@MapperScan(basePackages = "com.netease.seckill.dao")
 public class SeckillApplication {
 
 	public static void main(String[] args) {

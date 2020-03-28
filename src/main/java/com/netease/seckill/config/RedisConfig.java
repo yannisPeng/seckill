@@ -26,7 +26,7 @@ public class RedisConfig {
     @Value("${netease.redis.port}")
     private int port;
 
-    @Value("${netease.redis.password}")
+//    @Value("${netease.redis.password}")
     private String password;
 
     @Value("${netease.redis.poolMaxTotal}")

@@ -6,10 +6,16 @@
  */
 package com.netease.seckill.service.impl;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import javax.annotation.Resource;
 
 import org.redisson.api.RLock;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.stereotype.Service;
 
 import com.netease.seckill.cache.RedisService;
@@ -22,50 +28,80 @@ import com.netease.seckill.service.StockService;
 @Service
 public class StockServiceImpl implements StockService {
 
+    private ThreadLocal<Thread> rlock = new ThreadLocal<>();
+
     @Autowired
     private RedisService redisService;
 
     @Autowired
     private RedissonService redissonService;
 
+    @Resource
+    private DefaultRedisScript<String> redisScript;
+
+    @Autowired
+    private RedisTemplate stringRedisTemplate;
+
     @Override
-    public boolean deductionStock(long skuId) throws InterruptedException {
+    public boolean deductionStock(long skuId,long userId) throws InterruptedException {
+
+        rlock.set(Thread.currentThread());
 
         RLock rLock = redissonService.getRLock(skuId + "-" + "lock");
 
-        boolean bs = rLock.tryLock(1000, 6, TimeUnit.SECONDS);
+        rLock.tryLock(1000,30,TimeUnit.SECONDS);
 
-        if (bs) {
-            //从redis获取当前商品内存
-            Integer instock = redisService.get(skuId + "-" + "inStock",
-                Integer.class);
-            if (instock != null && instock > 0) {
-                boolean flag = redisService.set(skuId + "-" + "inStock",
-                    instock - 1);
-                //释放锁
+        List<String> keys = Arrays.asList(skuId + "-" + "inStock");
+        Object execute = stringRedisTemplate.execute(redisScript, keys, "");
+        if(execute.equals(0)){
+            return false;
+        }else{
+            if(rLock.isLocked() && rLock.isHeldByCurrentThread()){
                 rLock.unlock();
-                return true;
             }
+            Thread.sleep(10);
+            return true;
         }
-        return false;
+
+        //从redis获取当前商品库存
+//        Integer instock = redisService.get(skuId + "-" + "inStock",
+//            Integer.class);
+//        if (instock != null && instock > 0) {
+//            redisService.decr(skuId + "-" + "inStock");
+//            //处理用户信息包括下单
+//            Thread.sleep(10);
+//            //释放锁
+//            if(rLock.isLocked() && rLock.isHeldByCurrentThread()){
+//                rLock.unlock();
+//            }
+//        }
+//        return false;
     }
 
     @Override
     public int getTotalStock(long skuId) throws InterruptedException {
         RLock rLock = redissonService.getRLock(skuId + "-" + "lock");
 
-        boolean bs = rLock.tryLock(1000, 6, TimeUnit.SECONDS);
+        boolean bs = rLock.tryLock(1000, 30, TimeUnit.SECONDS);
 
         Integer instock = 0;
 
         if (bs) {
             instock = redisService.get(skuId + "-" + "inStock", Integer.class);
-            if (instock <= 0) {
+            if (instock == null || instock <= 0) {
                 rLock.unlock();
                 return 0;
+            }else{
+                rLock.unlock();
+                return instock;
             }
         }
-        return 1;
+        return instock;
+    }
+
+    @Override
+    public void getTotalStock() {
+        System.out.println(100);
     }
 
 }

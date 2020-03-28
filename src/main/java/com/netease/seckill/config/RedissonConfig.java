@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.netease.dedis.config.RedisConfig;
+//import com.netease.dedis.config.RedisConfig;
 
 /**
  * @author 彭羽(pengyu @ .corp.netease.com)

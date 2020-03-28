@@ -8,7 +8,10 @@ package com.netease.seckill.controller;
 
 import java.net.UnknownHostException;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +28,7 @@ public class SecKillController {
     @Autowired
     private StockService stockService;
 
+
     /**
      * 库存扣减
      */
@@ -40,20 +44,22 @@ public class SecKillController {
         }
 
         //判断当前skuid库存是否为0 关闭接口，提示结束
-        int total = stockService.getTotalStock(skuId);
-        if (total <= 0) {
-            return "current sku is sold out";
-        }
+//        int total = stockService.getTotalStock(skuId);
+//        if (total <= 0) {
+//            return "current sku is sold out";
+//        }
 
         //扣减库存
-        boolean dflag = stockService.deductionStock(skuId);
+        boolean dflag = stockService.deductionStock(skuId,userId);
 
         if (dflag == true) {
             //增加总库存
             //TODO 扣减成功，塞入队列，订阅并下单
+            return "success";
+        }else{
+            return "fail";
         }
 
-        return "success";
     }
 
 }
