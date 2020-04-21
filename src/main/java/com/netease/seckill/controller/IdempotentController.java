@@ -15,9 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.netease.seckill.po.Idempotent;
 import com.netease.seckill.service.IdempotentService;
 
-/**
- * @author 彭羽(wb.pengyu @ mesg.corp.netease.com)
- */
 @RequestMapping("/xhr/idempotent")
 @RestController
 public class IdempotentController {

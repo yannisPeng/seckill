@@ -16,9 +16,6 @@ import com.netease.seckill.exception.SecKillException;
 import com.netease.seckill.po.Idempotent;
 import com.netease.seckill.service.IdempotentService;
 
-/**
- * @author 彭羽(wb.pengyu @ mesg.corp.netease.com)
- */
 @Service
 public class IdempotentServiceImpl implements IdempotentService {
 
