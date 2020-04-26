@@ -8,9 +8,6 @@ package com.netease.seckill.service;
 
 import com.netease.seckill.po.Idempotent;
 
-/**
- * @author 彭羽(wb.pengyu @ mesg.corp.netease.com)
- */
 public interface IdempotentService {
 
     int insert(Idempotent idempotent);

@@ -6,9 +6,6 @@
  */
 package com.netease.seckill.exception;
 
-/**
- * @author 彭羽(wb.pengyu @ mesg.corp.netease.com)
- */
 public class SecKillException extends RuntimeException {
 
     public SecKillException(String message) {

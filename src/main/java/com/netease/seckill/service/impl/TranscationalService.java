@@ -12,9 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.netease.seckill.exception.SecKillException;
 
-/**
- * @author 彭羽(wb.pengyu @ mesg.corp.netease.com)
- */
 @Service
 public class TranscationalService {
 
