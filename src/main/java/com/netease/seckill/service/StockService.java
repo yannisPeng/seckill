@@ -17,4 +17,6 @@ public interface StockService {
 
     void getTotalStock();
 
+    void dealInfo(String info) throws Exception;
+
 }

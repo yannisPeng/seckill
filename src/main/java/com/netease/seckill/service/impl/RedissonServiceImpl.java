@@ -19,8 +19,8 @@ import com.netease.seckill.service.RedissonService;
 @Service
 public class RedissonServiceImpl implements RedissonService {
 
-    @Autowired
-    private RedissonClient redissonClient;
+//    @Autowired
+//    private RedissonClient redissonClient;
 
     /**
      * 获取锁
@@ -30,8 +30,9 @@ public class RedissonServiceImpl implements RedissonService {
      */
     @Override
     public RLock getRLock(String objectName) {
-        RLock rLock = redissonClient.getLock(objectName);
-        return rLock;
+//        RLock rLock = redissonClient.getLock(objectName);
+//        return rLock;
+        return null;
     }
 
 }

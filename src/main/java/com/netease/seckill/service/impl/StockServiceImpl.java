@@ -18,7 +18,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.stereotype.Service;
 
-import com.netease.seckill.cache.RedisService;
+//import com.netease.seckill.cache.RedisService;
 import com.netease.seckill.service.RedissonService;
 import com.netease.seckill.service.StockService;
 
@@ -30,8 +30,8 @@ public class StockServiceImpl implements StockService {
 
     private ThreadLocal<Thread> rlock = new ThreadLocal<>();
 
-    @Autowired
-    private RedisService redisService;
+//    @Autowired
+//    private RedisService redisService;
 
     @Autowired
     private RedissonService redissonService;
@@ -87,7 +87,7 @@ public class StockServiceImpl implements StockService {
         Integer instock = 0;
 
         if (bs) {
-            instock = redisService.get(skuId + "-" + "inStock", Integer.class);
+//            instock = redisService.get(skuId + "-" + "inStock", Integer.class);
             if (instock == null || instock <= 0) {
                 rLock.unlock();
                 return 0;
@@ -102,6 +102,12 @@ public class StockServiceImpl implements StockService {
     @Override
     public void getTotalStock() {
         System.out.println(100);
+    }
+
+    @Override
+    public void dealInfo(String info) throws Exception {
+        String message = info;
+        throw new Exception();
     }
 
 }
