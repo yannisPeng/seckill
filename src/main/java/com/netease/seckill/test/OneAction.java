@@ -14,5 +14,5 @@ package com.netease.seckill.test;
  * @Date 2020/2/19 16:56
  * @Version v1.0
  */
-public interface OneAction {
+public interface OneAction extends SomeAction,TwoAction{
 }

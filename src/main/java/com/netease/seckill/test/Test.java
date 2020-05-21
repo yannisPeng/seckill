@@ -10,7 +10,10 @@ public class Test {
 
     public static void main(String[] args) {
 
-        System.out.println(System.currentTimeMillis());
+        Integer a = 128;
+        Integer b = 128;
+
+        System.out.println(a == b);
 
     }
 

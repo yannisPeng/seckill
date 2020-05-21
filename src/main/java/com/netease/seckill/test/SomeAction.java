@@ -16,7 +16,7 @@ import javax.swing.Action;
  * @Date 2020/2/19 16:56
  * @Version v1.0
  */
-public interface SomeAction extends OneAction,TwoAction {
+public interface SomeAction{
 
 
 

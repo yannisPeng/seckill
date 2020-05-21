@@ -14,7 +14,7 @@ package com.netease.seckill.test;
  * @Date 2020/2/19 16:59
  * @Version v1.0
  */
-public abstract class AbstractAction implements SomeAction,OneAction,TwoAction{
+public abstract class AbstractAction{
 
 
 
