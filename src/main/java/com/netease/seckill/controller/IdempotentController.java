@@ -6,14 +6,17 @@
  */
 package com.netease.seckill.controller;
 
+import com.netease.seckill.po.Idempotent;
+import com.netease.seckill.service.IdempotentService;
+import com.netease.seckill.service.RedissonService;
+import com.netease.seckill.service.impl.RedissonServiceImpl;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.support.DefaultListableBeanFactory;
+import org.springframework.jndi.support.SimpleJndiBeanFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.netease.seckill.po.Idempotent;
-import com.netease.seckill.service.IdempotentService;
 
 @RequestMapping("/xhr/idempotent")
 @RestController
@@ -43,5 +46,16 @@ public class IdempotentController {
         idempotentService.updateOptTime(id);
         return "success";
     }
+
+    /**
+     * 获取幂等值
+     */
+    @RequestMapping("/testBeanFactory")
+    public String testBeanFactory() {
+        BeanFactory beanFactory = new DefaultListableBeanFactory();
+        beanFactory.getBean("redissonServiceImpl",RedissonServiceImpl.class).getRLock("abc");
+        return "success";
+    }
+
 
 }

@@ -6,27 +6,39 @@
  */
 package com.netease.seckill.controller;
 
-import java.net.UnknownHostException;
-
-import javax.annotation.Resource;
-
+import com.alibaba.fastjson.JSON;
+import com.netease.seckill.po.StudentService;
+import com.netease.seckill.service.StockService;
+import com.netease.seckill.spring.event.TeacherPublisher;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.script.DefaultRedisScript;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.netease.seckill.service.StockService;
+import java.net.UnknownHostException;
 
 /**
- * @author 彭羽(pengyu@corp.netease.com)
+ * @author 彭羽(pengyu @ corp.netease.com)
  */
 @RequestMapping("/xhr/seckill")
 @RestController
-public class SecKillController {
+public class SecKillController implements ApplicationContextAware, BeanFactoryAware {
 
     @Autowired
     private StockService stockService;
+
+    private ApplicationContext applicationContext;
+
+    private BeanFactory beanFactory;
+
+    @Autowired
+    private TeacherPublisher teacherPublisher;
 
 
     /**
@@ -34,9 +46,9 @@ public class SecKillController {
      */
     @RequestMapping("/buyGoods")
     public String buyGoods(
-        @RequestParam(required = true, value = "userId") long userId,
-        @RequestParam(required = true, value = "skuId") long skuId)
-        throws UnknownHostException, InterruptedException {
+            @RequestParam(required = true, value = "userId") long userId,
+            @RequestParam(required = true, value = "skuId") long skuId)
+            throws UnknownHostException, InterruptedException {
 
         //TODO 风控用户校验
         if (userId == -1) {
@@ -50,16 +62,43 @@ public class SecKillController {
 //        }
 
         //扣减库存
-        boolean dflag = stockService.deductionStock(skuId,userId);
+        boolean dflag = stockService.deductionStock(skuId, userId);
 
         if (dflag == true) {
             //增加总库存
             //TODO 扣减成功，塞入队列，订阅并下单
             return "success";
-        }else{
+        } else {
             return "fail";
         }
 
     }
 
+    /**
+     * 测试factory bean
+     */
+    @RequestMapping("/sayhi")
+    public String buyGoods() throws Exception {
+        StudentService studentFactoryBean = (StudentService) beanFactory.getBean("studentFactoryBean");
+        return JSON.toJSONString(studentFactoryBean.sayHi());
+    }
+
+    /**
+     * 布置作业
+     */
+    @RequestMapping("/publishHomework")
+    public String publishHomework(@RequestBody String content) {
+        teacherPublisher.publishHomeWork(content);
+        return "success";
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
+    }
+
+    @Override
+    public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+        this.beanFactory = beanFactory;
+    }
 }
