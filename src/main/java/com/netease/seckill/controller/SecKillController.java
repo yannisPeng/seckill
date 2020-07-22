@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.net.UnknownHostException;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author 彭羽(pengyu @ corp.netease.com)
@@ -29,6 +30,8 @@ import java.net.UnknownHostException;
 @RequestMapping("/xhr/seckill")
 @RestController
 public class SecKillController implements ApplicationContextAware, BeanFactoryAware {
+
+    private static final ConcurrentHashMap<String,String> testTomcatMap = new ConcurrentHashMap<>();
 
     @Autowired
     private StockService stockService;
@@ -101,4 +104,27 @@ public class SecKillController implements ApplicationContextAware, BeanFactoryAw
     public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
         this.beanFactory = beanFactory;
     }
+
+    /**
+     * 测试tomcat线程池
+     */
+    @RequestMapping("/map")
+    public String map() {
+        System.out.println(testTomcatMap);
+        return "success";
+    }
+
+
+    /**
+     * 测试tomcat线程池
+     */
+    @RequestMapping("/testTomcatThread")
+    public String testTomcatThread() {
+        if(testTomcatMap.get(Thread.currentThread().getName() + Thread.currentThread().getId()) != null){
+            System.out.println(Thread.currentThread().getName() + Thread.currentThread().getId());
+        }
+        testTomcatMap.put(Thread.currentThread().getName() + Thread.currentThread().getId(), "1");
+        return "success";
+    }
+
 }
