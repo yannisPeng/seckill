@@ -6,8 +6,8 @@ package com.netease.loadBalancing;
  * @author 10014994
  * @since 2020/11/14
  */
-public interface Strategy {
+public interface Strategy extends UpperInterface{
 
-    
+    void doStrategy();
 
 }
