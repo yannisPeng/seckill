@@ -6,6 +6,7 @@
  */
 package com.netease.seckill.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.netease.seckill.delay.core.TaskScheduler;
 import com.netease.seckill.delay.persistence.TaskParam;
 import com.netease.seckill.delayTask.CallFailDelayTask;
@@ -49,7 +50,7 @@ public class TestController {
     }
 
     public static void main(String[] args) {
-        System.out.println(ObjectSizeCalculator.getObjectSize(new Object()));
+        System.out.println(JSON.toJSONString(JSON.toJSONString(new People())));
     }
 
 }
