@@ -1,4 +1,4 @@
-package com.netease.loadBalancing;
+package com.netease.seckill.loadBalancing;
 
 /**
  * Description: 策略接口
@@ -6,7 +6,7 @@ package com.netease.loadBalancing;
  * @author 10014994
  * @since 2020/11/14
  */
-public interface Strategy extends UpperInterface{
+public interface Strategy {
 
     void doStrategy();
 

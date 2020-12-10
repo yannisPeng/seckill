@@ -8,12 +8,16 @@ package com.netease.seckill.service.impl;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import javax.annotation.Resource;
 
+import com.netease.seckill.util.ContextUtil;
 import org.redisson.api.RLock;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.stereotype.Service;
@@ -30,15 +34,16 @@ public class StockServiceImpl implements StockService {
 
     private ThreadLocal<Thread> rlock = new ThreadLocal<>();
 
+    private static final ThreadLocal threadLocal = new ThreadLocal();
+
 //    @Autowired
 //    private RedisService redisService;
-
+    @Autowired
+    private Test2 test2;
     @Autowired
     private RedissonService redissonService;
-
     @Resource
     private DefaultRedisScript<String> redisScript;
-
     @Autowired
     private RedisTemplate stringRedisTemplate;
 
@@ -100,8 +105,8 @@ public class StockServiceImpl implements StockService {
     }
 
     @Override
-    public void getTotalStock() {
-        System.out.println(100);
+    public String getTotalStock() {
+        return test2.getCache(System.currentTimeMillis());
     }
 
     @Override

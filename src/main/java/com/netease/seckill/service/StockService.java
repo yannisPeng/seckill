@@ -15,7 +15,7 @@ public interface StockService {
 
     int getTotalStock(long skuId) throws InterruptedException;
 
-    void getTotalStock();
+    String getTotalStock();
 
     void dealInfo(String info) throws Exception;
 

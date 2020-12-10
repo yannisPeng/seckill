@@ -6,15 +6,12 @@
  */
 package com.netease.seckill.dao;
 
-import org.apache.ibatis.annotations.Mapper;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.netease.seckill.po.Idempotent;
 
 /**
  * @author 彭羽(pengyu@corp.netease.com)
  */
-@Mapper
 public interface IdempotentMapper {
 
     int insert(Idempotent idempotent);

@@ -6,6 +6,8 @@
  */
 package com.netease.seckill.test;
 
+import lombok.Data;
+
 /**
  * @Title: People
  * @Package com.netease.seckill.test
@@ -15,4 +17,6 @@ package com.netease.seckill.test;
  * @Version v1.0
  */
 public class People {
+
+
 }

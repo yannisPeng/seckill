@@ -6,7 +6,6 @@
  */
 package com.netease.seckill.test;
 
-import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
 /**
  * @Title: Solution
@@ -16,12 +15,12 @@ import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
  * @Date 2020/2/18 9:49
  * @Version v1.0
  */
-public class DynamicDataSource extends AbstractRoutingDataSource {
-
-
-    @Override
-    protected Object determineCurrentLookupKey() {
-
-        return null;
-    }
-}
+//public class DynamicDataSource extends AbstractRoutingDataSource {
+//
+//
+//    @Override
+//    protected Object determineCurrentLookupKey() {
+//
+//        return null;
+//    }
+//}
