@@ -2,19 +2,19 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.netease.seckill.dao.IdempotentMapper">
+<mapper namespace="com.net.seckill.dao.IdempotentMapper">
 
     <delete id="delete" parameterType="map">
         DELETE FROM IDEMPOTENT
         WHERE record = #{record}
     </delete>
 
-    <select id="selectByRecord" parameterType="java.lang.String" resultType="com.netease.seckill.po.Idempotent">
+    <select id="selectByRecord" parameterType="java.lang.String" resultType="com.net.seckill.po.Idempotent">
         SELECT * FROM IDEMPOTENT
         WHERE record = #{record}
     </select>
 
-    <update id="insert" parameterType="com.netease.seckill.po.Idempotent">
+    <update id="insert" parameterType="com.net.seckill.po.Idempotent">
         INSERT INTO  IDEMPOTENT (record,tag,optTime)
         VALUES (#{record},#{tag},#{optTime})
     </update>
