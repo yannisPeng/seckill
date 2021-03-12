@@ -6,19 +6,31 @@
  */
 package com.net.seckill.test;
 
-import lombok.Data;
-
 /**
  * @Title: People
  * @Description:
  * @Date 2020/2/19 16:54
  * @Version v1.0
  */
-@Data
-public class People {
+public class People implements Cloneable {
 
     private String name = "张三";
 
     private Integer age = 10;
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
 }

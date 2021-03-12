@@ -10,7 +10,11 @@ import java.math.BigDecimal;
  */
 public class BigDecimalTest {
 
-    public static void main(String[] args) {
+    private void getTest(){
+
+    }
+
+    protected static void main(String[] args) {
 
         BigDecimal bigDecimal = new BigDecimal("0");
         for (int i = 0; i < 1; i++) {

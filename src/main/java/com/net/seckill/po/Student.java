@@ -1,5 +1,8 @@
 package com.net.seckill.po;
 
+import com.net.seckill.test.BigDecimalTest;
+import com.net.seckill.test.OneAction;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -9,17 +12,24 @@ import java.util.List;
  * @author 10014994
  * @since 2020/8/3
  */
-public class Student implements Serializable {
+public class Student extends BigDecimalTest implements Serializable {
 
     private String name;
 
     private List<String> attrs;
 
+    public Student() {
+    }
+
+    static {
+        System.out.println("进入Student静态代码块");
+    }
+
     public Student(String name) {
         this.name = name;
     }
 
-    public String getName() {
+    private String getName() {
         return name;
     }
 
