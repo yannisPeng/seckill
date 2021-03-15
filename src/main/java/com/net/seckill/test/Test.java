@@ -1,7 +1,9 @@
 package com.net.seckill.test;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.net.Socket;
 import java.util.List;
 
 /**
@@ -24,15 +26,15 @@ public class Test extends ClassLoader implements OneAction{
         return super.findClass(name);
     }
 
-    public static void main(String[] args) throws InterruptedException, IllegalAccessException, InstantiationException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException {
+    public static void main(String[] args) throws InterruptedException, IllegalAccessException, InstantiationException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException, IOException {
 
         Class<?> aClass = ClassLoader.getSystemClassLoader().loadClass("com.net.seckill.po.Student");
         Method[] method = aClass.getDeclaredMethods();
         Method[] methods = aClass.getMethods();
 
-        for(Method method1 : method){
+        Socket socket = new Socket("127.0.0.1", 8080);
 
-        }
+
     }
 
     public void testInterfaceStatic(){
