@@ -14,4 +14,9 @@ package com.net.seckill.test;
  * @Version v1.0
  */
 public interface OneAction extends SomeAction,TwoAction{
+
+    default void testStatic(){
+
+    }
+
 }
