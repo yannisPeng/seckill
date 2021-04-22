@@ -16,4 +16,5 @@ public interface StockService {
 
     void dealInfo(String info) throws Exception;
 
+
 }

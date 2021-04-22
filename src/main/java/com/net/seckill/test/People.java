@@ -15,10 +15,14 @@ import lombok.Data;
  * @Version v1.0
  */
 @Data
-public class People {
+public class People implements Comparable{
 
     private String name = "张三";
 
     private Integer age = 10;
 
+    @Override
+    public int compareTo(Object o) {
+        return 0;
+    }
 }

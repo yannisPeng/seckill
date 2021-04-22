@@ -11,9 +11,12 @@ import java.util.List;
  */
 public class Student implements Serializable {
 
-    private String name;
+    private String name = "张三";
 
     private List<String> attrs;
+
+    public Student() {
+    }
 
     public Student(String name) {
         this.name = name;

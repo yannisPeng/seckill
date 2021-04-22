@@ -11,5 +11,11 @@ package com.net.seckill.test;
  * @Date 2020/2/19 16:54
  * @Version v1.0
  */
-public abstract class Action {
+public interface Action {
+
+    default boolean preCheck(){
+        return true;
+    }
+
+    void doSomething();
 }
