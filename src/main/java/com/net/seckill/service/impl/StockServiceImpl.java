@@ -47,7 +47,7 @@ public class StockServiceImpl implements StockService {
 
         RLock rLock = redissonService.getRLock(skuId + "-" + "lock");
 
-        rLock.tryLock(1000,30,TimeUnit.SECONDS);
+        rLock.tryLock();
 
         List<String> keys = Arrays.asList(skuId + "-" + "inStock");
         Object execute = stringRedisTemplate.execute(redisScript, keys, "");

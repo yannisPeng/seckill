@@ -1,10 +1,16 @@
 package com.net.seckill.test;
 
+import com.net.seckill.service.impl.Test1;
+
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.Socket;
+import java.rmi.AccessException;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Description:
@@ -12,9 +18,17 @@ import java.util.List;
  * @author 10014994
  * @date: 2020/5/11
  */
-public class Test extends ClassLoader implements OneAction{
+public class Test extends ClassLoader implements OneAction {
 
     People people = new People();
+
+    Object[] abc = new Object[10];
+
+    volatile Test1 count = new Test1();
+
+    public void init() {
+        abc[0] = count;
+    }
 
     @Override
     public Class<?> loadClass(String name) throws ClassNotFoundException {
@@ -26,21 +40,30 @@ public class Test extends ClassLoader implements OneAction{
         return super.findClass(name);
     }
 
-    public static void main(String[] args) throws InterruptedException, IllegalAccessException, InstantiationException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException, IOException {
+    private static Object objectLockA = new Object();
 
-        Class<?> aClass = ClassLoader.getSystemClassLoader().loadClass("com.net.seckill.po.Student");
-        Method[] method = aClass.getDeclaredMethods();
-        Method[] methods = aClass.getMethods();
+    public static void m1() {
+        new Thread(() -> {
+            synchronized (objectLockA) {
+                System.out.println("外");
+                synchronized (objectLockA) {
+                    System.out.println("内");
+                }
+            }
+        }, "").start();
+    }
 
-        Socket socket = new Socket("127.0.0.1", 8080);
+    public static void main(String[] args) throws InterruptedException {
 
+        ThreadLocal threadLocal = new ThreadLocal();
+        threadLocal.set(1);
+        threadLocal.get();
 
     }
 
-    public void testInterfaceStatic(){
+    public void testInterfaceStatic() {
 
     }
-
 
 
     public void test1() throws InterruptedException {
@@ -56,7 +79,7 @@ public class Test extends ClassLoader implements OneAction{
         }
     }
 
-    public static class A extends Test{
+    public static class A extends Test {
 
         private static String name;
 
