@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
  * @since 2020/11/12
  */
 @Service
-public class ActionImpl implements Action {
+public class ActionImpl extends Action {
     @Override
     public void payMoney(Money money) {
         System.out.println("付钱");

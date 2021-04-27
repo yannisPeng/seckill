@@ -12,8 +12,20 @@ package com.net.seckill.test;
  * @Date 2020/2/19 16:59
  * @Version v1.0
  */
-public abstract class AbstractAction{
+public abstract class AbstractAction implements Action{
 
+    public void doSomething(){
+        try{
+            this.main();
+        }catch (Exception e){
+            fail();
+        }
+    }
 
+    abstract void main();
+
+    public void fail() {
+
+    }
 
 }

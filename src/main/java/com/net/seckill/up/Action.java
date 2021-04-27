@@ -6,8 +6,14 @@ package com.net.seckill.up;
  * @author 10014994
  * @since 2020/11/12
  */
-public interface Action {
+public abstract class Action {
 
-    void payMoney(Money money);
+    void payMoney(Money money) {
+
+    }
+
+    String payMoney(){
+        return null;
+    }
 
 }

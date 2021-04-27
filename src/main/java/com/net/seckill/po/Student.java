@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class Student extends BigDecimalTest implements Serializable {
 
-    private String name;
+    private String name = "张三";
 
     private List<String> attrs;
 

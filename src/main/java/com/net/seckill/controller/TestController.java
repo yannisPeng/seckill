@@ -12,6 +12,7 @@ import com.net.seckill.delay.persistence.TaskParam;
 import com.net.seckill.delayTask.CallFailDelayTask;
 import com.net.seckill.service.impl.StockServiceImpl;
 import com.net.seckill.test.People;
+import com.net.seckill.spring.TestSpringBean;
 import jdk.nashorn.internal.ir.debug.ObjectSizeCalculator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +29,8 @@ public class TestController {
     private TaskScheduler taskScheduler;
     @Autowired
     private StockServiceImpl stockService;
+    @Autowired
+    private TestSpringBean testSpringBean;
 
     @RequestMapping(value = "/testBuilder2", produces = "application/json; charset=utf-8", method = RequestMethod.POST)
     public String testBuilder2() {

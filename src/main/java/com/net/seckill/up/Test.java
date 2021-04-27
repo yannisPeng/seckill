@@ -12,6 +12,19 @@ import javax.annotation.PostConstruct;
 import java.util.Map;
 import java.util.concurrent.locks.ReentrantLock;
 
+import javax.swing.table.TableCellEditor;
+import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.ReentrantLock;
+
 /**
  * Description:
  *
@@ -31,18 +44,18 @@ public class Test implements BeanPostProcessor, ApplicationContextAware {
     }
 
     @PostConstruct
-    public void init(){
+    public void init() {
         System.out.println();
     }
 
     public static void main(String[] args) {
-        Thread thread1 = new Thread(new Runnable(){
+        Thread thread1 = new Thread(new Runnable() {
             @Override
             public void run() {
                 System.out.println("起床");
             }
         });
-        Thread thread2 = new Thread(new Runnable(){
+        Thread thread2 = new Thread(new Runnable() {
             @SneakyThrows
             @Override
             public void run() {
@@ -50,7 +63,7 @@ public class Test implements BeanPostProcessor, ApplicationContextAware {
                 System.out.println("穿衣服");
             }
         });
-        Thread thread3 = new Thread(new Runnable(){
+        Thread thread3 = new Thread(new Runnable() {
             @SneakyThrows
             @Override
             public void run() {
@@ -72,6 +85,7 @@ public class Test implements BeanPostProcessor, ApplicationContextAware {
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
 //        System.out.println("after");
+
         return null;
     }
 
@@ -84,5 +98,6 @@ public class Test implements BeanPostProcessor, ApplicationContextAware {
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
+
     }
 }

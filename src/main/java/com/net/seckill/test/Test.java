@@ -1,8 +1,10 @@
 package com.net.seckill.test;
+import com.net.seckill.util.Md5Util;
+import org.springframework.util.DigestUtils;
 
 import com.net.seckill.service.impl.Test1;
 
-import java.io.IOException;
+import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.Socket;
@@ -70,19 +72,8 @@ public class Test extends ClassLoader implements OneAction {
         synchronized (people) {
             people.wait();
             System.out.println("wait");
+
         }
-    }
-
-    public void test2(List<String> str) {
-        synchronized (people) {
-            people.notify();
-        }
-    }
-
-    public static class A extends Test {
-
-        private static String name;
 
     }
-
 }
