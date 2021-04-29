@@ -26,11 +26,7 @@ public class Test00938 {
     public int rangeSumBST(TreeNode root, int low, int high) {
         List<Integer> numList = new ArrayList<>();
         doTraverse(root, low, high, numList);
-        int sum = 0;
-        for (Integer num : numList){
-            sum += num;
-        }
-        return sum;
+        return numList.stream().mapToInt(n -> n).sum();
     }
 
     public void doTraverse(TreeNode root, int low, int high, List<Integer> numList) {
