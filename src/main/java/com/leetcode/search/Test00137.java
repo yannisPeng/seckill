@@ -26,18 +26,21 @@ package com.leetcode.search;
 public class Test00137 {
 
     public int singleNumber(int[] nums) {
-        for (int i = 0; i < nums.length; i++) {
+        int ans = 0;
+        for (int i = 0; i < 32; i++) {
             int count = 0;
-            for (int j = 0; j < nums.length; j++) {
-                if (nums[i] == nums[j]) {
-                    count++;
-                }
+            for (int num : nums) {
+                count += ((num >> i) & 1);
             }
-            if(count <= 1){
-                return nums[i];
+            if(count % 3 != 0){
+                ans = ans | (i >> 1);
             }
         }
-        return 0;
+        return ans;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new Test00137().singleNumber(new int[]{1, 2, 2, 2}));
     }
 
 }
