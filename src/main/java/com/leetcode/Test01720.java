@@ -1,6 +1,7 @@
 package com.leetcode;
 
 /**
+ * Description: 解码异或后的数组
  * 解码异或后的数组
  * <p>
  * 未知 整数数组 arr 由 n 个非负整数组成。
@@ -22,6 +23,9 @@ package com.leetcode;
  * encoded.length == n - 1
  * 0 <= encoded[i] <= 105
  * 0 <= first <= 105
+ *
+ * @author 10014994
+ * @since 2021/5/6
  */
 public class Test01720 {
 
