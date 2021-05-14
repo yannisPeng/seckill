@@ -12,7 +12,7 @@ import java.util.List;
  * answer[j] % answer[i] == 0
  * 如果存在多个有效解子集，返回其中任何一个均可。
  * <p>
- *  
+ *
  * <p>
  * 示例 1：
  * <p>
@@ -23,7 +23,7 @@ import java.util.List;
  * <p>
  * 输入：nums = [1,2,4,8]
  * 输出：[1,2,4,8]
- *  
+ *
  * <p>
  * 提示：
  * <p>
