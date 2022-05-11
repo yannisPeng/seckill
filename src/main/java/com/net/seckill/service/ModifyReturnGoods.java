@@ -4,6 +4,7 @@ public class ModifyReturnGoods {
 
     public static void main(String[] args) {
         System.out.println("skucode");
+        System.out.println("skucode");
     }
 
 }
