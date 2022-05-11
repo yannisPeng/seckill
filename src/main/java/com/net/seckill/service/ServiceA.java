@@ -10,4 +10,8 @@ public class ServiceA {
     public void setServiceB(ServiceB serviceB) {
         this.serviceB = serviceB;
     }
+
+    public static void main(String[] args) {
+        
+    }
 }
