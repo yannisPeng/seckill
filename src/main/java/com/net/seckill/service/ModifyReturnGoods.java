@@ -14,6 +14,7 @@ public class ModifyReturnGoods {
 
         List<String> returnExchangeGoodsSkc = new ArrayList<>();
         System.out.println("skucode");
+        System.out.println("1");
     }
 
 }
